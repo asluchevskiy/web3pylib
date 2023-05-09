@@ -132,12 +132,13 @@ class Account:
             tx.update({
                 'gasPrice': self._web3.eth.gas_price,
             })
-
         else:
             tx.update({
                 'maxFeePerGas': int(self._node.max_fee),
                 'maxPriorityFeePerGas': self._node.max_priority_fee,
             })
+        if chain_id == 42161:  # arbitrum one gas fix
+            tx['maxFeePerGas'] = int(tx['maxFeePerGas'] * 1.25)
         tx['gas'] = self._web3.eth.estimate_gas(tx)
         return tx
 
