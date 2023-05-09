@@ -25,6 +25,10 @@ class Node:
     def block_number(self):
         return self._web3.eth.block_number
 
+    @cached_property
+    def chan_id(self):
+        return self._web3.eth.chain_id
+
     @property
     def gas_price(self):
         return self._web3.eth.gas_price
