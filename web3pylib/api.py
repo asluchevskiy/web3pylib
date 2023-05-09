@@ -128,7 +128,7 @@ class Account:
             'value': amount,
             'nonce': self.transaction_count,
         }
-        if chain_id == 324:  # for zksync era
+        if chain_id in (324, 250):  # for zksync era and fantom
             tx.update({
                 'gasPrice': self._web3.eth.gas_price,
             })
